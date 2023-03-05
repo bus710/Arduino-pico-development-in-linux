@@ -26,11 +26,13 @@ If open the file, the contents should look like this (total 63 lines):
 ```
 
 The **-iwithprefixbefore** should be replaced with the actual path + version.
-For example, "-iwithprefixbefore/cores/rp2040/api/deprecated-avr-comp/" should be "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040/api/deprecated-avr-comp".
+For example, the first item should be updated like the second item:
+- -iwithprefixbefore/cores/rp2040/api/deprecated-avr-comp/
+- "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040/api/deprecated-avr-comp",
 
-The prefix is replaced and double quotes are added to head and tail to be a json format string. This should be done for all 63 lines and pasted into the c_cpp_properties.json as includePath.
+The prefix is replaced. Also double quotes and comma are added to head and tail to be a json format string. This should be done for all 63 lines and pasted into the c_cpp_properties.json as includePath.
 
-Also, those 3 lines should be added to avoid redlines:
+Also, those 3 lines should be added to avoid redlines (should be edited for the path and version, too!):
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/include",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/variants/rpipico",
