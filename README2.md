@@ -2,6 +2,8 @@
 
 # How to get the correct header paths
 
+## Manual way
+
 This sub section introduces how to get the correct header paths. Whenever there is a new Arduino-pico version, this should be done for the includePath in c_cpp_properties.json for a sketch.
 
 First, make sure where the board package is. For most of Linux distros, it should be under the user's home directory like this:
@@ -36,6 +38,8 @@ Also, those 3 lines should be added to avoid redlines (should be edited for the 
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/include",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/variants/rpipico",
+
+## Little better way
 
 
 [Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
