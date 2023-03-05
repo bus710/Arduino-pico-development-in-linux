@@ -1,4 +1,4 @@
-[Back to README.md](README.md)
+[Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
 
 
 As an example, let's see this line - **~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040**.
@@ -81,3 +81,6 @@ To manually update the **includePath**,
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/lwip/src/include",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/btstack/src",
 - "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/btstack/platform/embedded"
+
+
+[Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
