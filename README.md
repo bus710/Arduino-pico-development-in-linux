@@ -157,7 +157,7 @@ Now, let's verify the sketch. Open the command palette with **Control + Shift + 
 1. it compiles the sketch and creates all the results under the build directory. 
 2. it creates a new file **c_cpp_properties.json** for this C/C++ based project. The **includePath** should be updated since it doesn't point the correct header file paths.
 
-The includePath should look like the one in **Blink/.vscode/c_cpp_properties.json**, but the paths can be little different as Arduino-pico gets updated. There is [this another doc](README2.md), which explains how to get the correct header paths. 
+The includePath should look like the one in **Blink/.vscode/c_cpp_properties.json**, but the paths can be little different depend on the Arduino-pico version and the actual path in file system. There is this [another doc](README2.md), which explains how to get the correct header paths.
 
 <br/>
 
