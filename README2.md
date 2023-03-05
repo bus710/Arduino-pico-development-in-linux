@@ -1,5 +1,7 @@
 [Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
 
+# How to get the correct header paths
+
 
 As an example, let's see this line - **~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040**.
 
