@@ -30,4 +30,10 @@ For example, "-iwithprefixbefore/cores/rp2040/api/deprecated-avr-comp/" should b
 
 This should be done for all 63 lines and pasted into the c_cpp_properties.json as includePath.
 
+Also, those 3 lines should be added to avoid redlines:
+- "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040",
+- "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/include",
+- "~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/variants/rpipico",
+
+
 [Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
