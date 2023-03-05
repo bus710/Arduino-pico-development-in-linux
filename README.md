@@ -1,6 +1,6 @@
 # Arduino-pico-development-in-linux
 
-Raspberry Pi RP2040 is an ARM Cortex M0 based small microcontroller. It has 2 cores so robust to handle multitasking. It has PIO capability so the digital I/O has high accuracy for low level protocols such as SPI/I2C/UART. The Pico W board has good network libraries so easy to start IoT projects.
+Raspberry Pi RP2040 is an ARM Cortex M0 based small microcontroller. It has 2 cores so robust to handle multitasking. It has PIO capability so the digital I/O has high accuracy for low level protocols such as SPI/I2C/UART. The Pico W board can talk to other devices without wire so easy to start IoT projects.
 
 This repo is written with a particular combination in mind:
 - Debian/Ubuntu Linux as the host
@@ -53,7 +53,7 @@ Raspberry Pi Pico W                 rp2040:rp2040:rpipicow
 
 ## Configure upload permission
 
-Although pico boards supports UF2 (so firmware update can be done by drag and drop), it can be little cumbersome during development phase. Arduino-cli can put pico boards into bootloader mode when reset (so no need to press the boot button on the board), but the udev configuration should be applied prior to any sketch uploading.
+Although pico boards support UF2 (so firmware update can be done by drag and drop), it can be little cumbersome during development phase. Arduino-cli can put pico boards into bootloader mode when reset (so no need to press the boot button on the board). To allow that, the udev configuration should be applied prior to any sketch uploading.
 ```sh
 $ arduino-cli core update-index
 $ arduino-cli core install arduino:mbed_rp2040 
@@ -66,12 +66,10 @@ $ sudo ./post_install.sh
 ## Vscode and extensions
 
 Since Vscode is popular, no need to introduce how to install it.
-
-Few extensions should be installed:
+Still few extensions should be installed:
 - ms-vscode.cpptools
 - ms-vscode.cpptools-extension-pack
 - vsciot-vscode.vscode-arduino
-
 
 <br/>
 
@@ -100,16 +98,21 @@ $ code
 
 <br/>
 
-### Vscode-arduino configuration
+## Vscode-arduino configuration
 
 Once Vscode is opened, let's double check if pico package is installed.
 Open the command palette with **Control + Shift + p** and choose **Arduino: Board Manager**. Press the **Refresh Package Indexes** and search for pico if **Raspberry Pi Pico/RP2040** is installed. If not, please press the install button.
 
 <br/>
 
-### Project specific configuration
+## Project specific configuration
 
 Now, project specific items should be configured.
+
+
+<br/>
+
+### 1. The sketch
 
 The sketch file can be updated - it is just an LED blinking example:
 ```c
@@ -129,6 +132,10 @@ void loop()
 }
 ``` 
 
+<br/>
+
+### 2. Board type configuration and arduino.json
+
 At this point, we cannot even compile the sketch because the **board type** is not specified yet.
 Open the command palette with **Control + Shift + p** and choose **Arduino: Board Config**. There will be **Select your board** dropdown - choose the pico or pico w in the list. The .vscode directory and arduino.json file will be automatically created.
 
@@ -142,98 +149,21 @@ The arduino.json file can be updated with these lines to specify the name of thi
 }
 ```
 
+<br/>
+
+### 3. Sketch verification and c_cpp_properties.json
+
 Now, let's verify the sketch. Open the command palette with **Control + Shift + p** and choose **Arduino: Verify**. This command will do 2 things:
 1. it compiles the sketch and creates all the results under the build directory. 
 2. it creates a new file **c_cpp_properties.json** for this C/C++ based project. The **includePath** should be updated since it doesn't point the correct header file paths.
 
-The includePath should look like this, but the path can be little different as Arduino-pico gets updated. 
+The includePath should look like the one in **Blink/.vscode/c_cpp_properties.json**, but the paths can be little different as Arduino-pico gets updated. There is [this another doc](README2.md), which explains how to get the correct header paths. 
 
-<details>
-  <summary><b>The includePath - 66 lines</b></summary>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040", </li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040/api",
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040/api/deprecated-avr-comp",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/include/pico_base",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/variants/rpipico",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/tinyusb/src",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/boards/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_base/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_binary_info/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_bit_ops/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_divider/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_stdlib/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_sync/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_time/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_usb_reset_interface/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/common/pico_util/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2040/hardware_regs/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2040/hardware_structs/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/cmsis/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/cmsis/stub/CMSIS/Core/Include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/cmsis/stub/CMSIS/Device/RaspberryPi/RP2040/Include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_adc/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_base/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_claim/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_clocks/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_divider/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_dma/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_exception/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_flash/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_gpio/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_i2c/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_interp/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_irq/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_rtc/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_pio/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_pll/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_pwm/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_resets/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_spi/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_sync/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_timer/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_uart/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_vreg/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_watchdog/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/hardware_xosc/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_async_context/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_bootrom/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_btstack/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_cyw43_arch/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_cyw43_driver/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_double/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_float/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_int64_ops/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_lwip/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_multicore/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_platform/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_printf/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_runtime/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_rand/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_stdio/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_stdio_uart/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/src/rp2_common/pico_unique_id/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/cyw43-driver/src",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/lwip/src/include",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/btstack/src",</li>
-    <li>"~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/pico-sdk/lib/btstack/platform/embedded"</li>
-</details>
+<br/>
 
-</br>
+### 4. Surpress Intellisense with settings.json
 
-As an example, let's see this line - **~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/cores/rp2040**.
-
-1. There is this long prefix: ~/.arduino15/packages/rp2040/hardware/rp2040/
-2. Then the version follows: 3.0.0
-3. This is the actual path: /cores/rp2040
-
-To manually update the **includePath**, 
-1. delete all the auto-generated paths in the includePath.
-2. find the actual path from **~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/lib/platform_inc.txt**. The problem is, each line has this **-iwithprefixbefore** prefix. This prefix should be replaced with the other prefix and version in the includePath of the c_cpp_properties.json file. 
-
-<!-- TODO: Create a go project to automate this -->
-
-One thing shdouldn't be forgotten is, Intellisense can overwrite this hard work on the includePath. To prevent it to be re-generated, add a new file **settings.json** under the .vscode directory.
+One thing shdouldn't be forgotten is, even if the includePath gets manually updated, Intellisense can overwrite the includePath. To prevent, add a new file **settings.json** under the .vscode directory with those lines.
 ```json
 {
     "arduino.disableIntelliSenseAutoGen": true,
@@ -245,6 +175,15 @@ One thing shdouldn't be forgotten is, Intellisense can overwrite this hard work 
 
 ## Upload sketch 
 
-Lastly, let's upload the sketch to the board. As it comes with UF2 as default, Arduino-cli cannot reset it by itself for the first time. To get the board's bootloader activated, simply unplug the board from host (if it was plugged in). Then press and hold the boot button on the board during plugging it back. Press **Control + Alt + u**. A popup will say **Serial port should be selected** (or so). Then pick the right one (like /dev/ttyACM0) and try again **Control + Alt + u**. 
+Lastly, let's upload the sketch to the board. As it comes with UF2 as default, Arduino-cli cannot reset it by itself for the first time. 
+
+To get the board's bootloader activated: 
+1. simply unplug the board from host (if it was already plugged in).
+2. press and hold the boot button on the board during plugging it back. 
+3. press **Control + Alt + u**. 
+4. A popup will say **Serial port should be selected** (or so). Then pick the right one (like /dev/ttyACM0) and try again **Control + Alt + u**.
 
 Make sure the short cut! It is **Control + Alt + u** (not Control + Shift + p).
+
+Once the uploading is done, the built in LED should blink.
+
