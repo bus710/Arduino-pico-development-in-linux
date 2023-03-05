@@ -1,0 +1,4 @@
+{
+    "arduino.disableIntelliSenseAutoGen": true,
+    "C_Cpp.errorSquiggles": "disabled"
+}
