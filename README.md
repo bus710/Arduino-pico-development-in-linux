@@ -216,7 +216,7 @@ To manually update the **includePath**,
 1. delete all the auto-generated paths in the includePath.
 2. find the actual path from **~/.arduino15/packages/rp2040/hardware/rp2040/3.0.0/lib/platform_inc.txt**. The problem is, each line has this **-iwithprefixbefore** prefix. This prefix should be replaced with the other prefix and version in the includePath of the c_cpp_properties.json file. 
 
-<!-- TODO -->
+<!-- TODO: Create a go project to automate this -->
 
 One thing shdouldn't be forgotten is, Intellisense can overwrite this hard work on the includePath. To prevent it to be re-generated, add a new file **settings.json** under the .vscode directory.
 ```json
