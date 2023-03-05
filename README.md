@@ -29,6 +29,8 @@ The executable binary will be installed under $HOME/Arduino/cli/bin, so add the 
 export PATH=$PATH:$HOME/Arduino/cli/bin
 ```
 
+<br/>
+
 ## Install arduino-pico via arduino-cli
 
 The arduino-cli command can be used to install basic configuration:
@@ -47,6 +49,8 @@ Raspberry Pi Pico W                 rp2040:rp2040:rpipicow
 ...
 ```
 
+<br/>
+
 ## Configure upload permission
 
 Although pico boards supports UF2 (so firmware update can be done by drag and drop), it can be little cumbersome during development phase. Arduino-cli can put pico boards into bootloader mode when reset (so no need to press the boot button on the board), but the udev configuration should be applied prior to any sketch uploading.
@@ -57,6 +61,8 @@ $ cd ~/.arduino15/packages/arduino/hardware/mbed_rp2040/${VERSION}
 $ sudo ./post_install.sh
 ```
 
+<br/>
+
 ## Vscode and extensions
 
 Since Vscode is popular, no need to introduce how to install it.
@@ -65,6 +71,9 @@ Few extensions should be installed:
 - ms-vscode.cpptools
 - ms-vscode.cpptools-extension-pack
 - vsciot-vscode.vscode-arduino
+
+
+<br/>
 
 ## Create a new sketch
 
@@ -80,6 +89,8 @@ void loop() {
 }
 ```
 
+<br/>
+
 ## Configure the sketch in Vscode
 
 In the Blink directory, open Vscode:
@@ -87,10 +98,14 @@ In the Blink directory, open Vscode:
 $ code
 ```
 
+<br/>
+
 ### Vscode-arduino configuration
 
 Once Vscode is opened, let's double check if pico package is installed.
 Open the command palette with **Control + Shift + p** and choose **Arduino: Board Manager**. Press the **Refresh Package Indexes** and search for pico if **Raspberry Pi Pico/RP2040** is installed. If not, please press the install button.
+
+<br/>
 
 ### Project specific configuration
 
@@ -225,6 +240,8 @@ One thing shdouldn't be forgotten is, Intellisense can overwrite this hard work 
     // "C_Cpp.errorSquiggles": "disabled" // Add this if redlines are too annoying.
 }
 ```
+
+<br/>
 
 ## Upload sketch 
 
