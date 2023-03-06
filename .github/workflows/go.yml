@@ -48,12 +48,14 @@ jobs:
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'zip'
+        directory: 'helper'
         path: 'helper_win.exe'
         filename: 'helper_win.zip'
     - name: Archive Release for Mac
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
+        directory: 'helper'
         path: 'helper_mac'
         filename: 'helper_mac.tar.gz'
 
