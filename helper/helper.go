@@ -12,8 +12,9 @@ import (
 )
 
 const (
-	PREFIX   string = ".arduino15/packages/rp2040/hardware/rp2040"
-	FILENAME string = "lib/platform_inc.txt"
+	PREFIX     string = ".arduino15/packages/rp2040/hardware/rp2040"
+	PREFIX_WIN string = "AppData/Local/Arduino15/packages/rp2040/hardware/rp2040"
+	FILENAME   string = "lib/platform_inc.txt"
 
 	ADDITIONAL_HEADER_0 string = "cores/rp2040"
 	ADDITIONAL_HEADER_1 string = "include"
