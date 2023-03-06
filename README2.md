@@ -49,6 +49,8 @@ $ cd helper
 $ go run helper.go
 ```
 
+If Go SDK is not available, please take a look into [the release page](https://github.com/bus710/Arduino-pico-development-in-linux/releases). Executables might reside there.
+
 The output should look like this:
 ![output.png](assets/output.png)
 
