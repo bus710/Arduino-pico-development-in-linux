@@ -93,7 +93,7 @@ void loop() {
 
 In the Blink directory, open Vscode:
 ```sh
-$ code
+$ code .
 ```
 
 <br/>
