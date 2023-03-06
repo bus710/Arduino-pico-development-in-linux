@@ -24,30 +24,15 @@ jobs:
     - name: Build
       run: |
         cd helper 
+
+        echo 'Build for Linux'
         go build -v ./...
+
+        echo 'Build for Win'
         GOOS=windows go build -v ./...
+
+        echo 'Build for Mac'
         GOOS=darwin go build -v -o helper_mac ./...
-
-        $compress = @{
-          Path = "helper", 
-          CompressionLevel = "Fastest"
-          DestinationPath = "helper.tar.gz"
-        }
-        Compress-Archive @compress
-
-        $compress = @{
-          Path = "helper.exe", 
-          CompressionLevel = "Fastest"
-          DestinationPath = "helper.zip"
-        }
-        Compress-Archive @compress
-
-        $compress = @{
-          Path = "helper_mac", 
-          CompressionLevel = "Fastest"
-          DestinationPath = "helper_mac.tar.gz"
-        }
-        Compress-Archive @compress
 
     - uses: actions/checkout@master
     - name: Archive Release for Linux
