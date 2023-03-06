@@ -35,29 +35,6 @@ jobs:
         tar cf helper_mac.tar.gz helper_mac
         zip helper_win.zip helper_win.exe
 
-
-    # - name: Archive Release for Linux
-    #   uses: thedoctor0/zip-release@0.7.1
-    #   with:
-    #     type: 'tar'
-    #     directory: 'helper'
-    #     path: 'helper_linux'
-    #     filename: 'helper_linux.tar.gz'
-    # - name: Archive Release for Win
-    #   uses: thedoctor0/zip-release@0.7.1
-    #   with:
-    #     type: 'zip'
-    #     directory: 'helper'
-    #     path: 'helper_win.exe'
-    #     filename: 'helper_win.zip'
-    # - name: Archive Release for Mac
-    #   uses: thedoctor0/zip-release@0.7.1
-    #   with:
-    #     type: 'tar'
-    #     directory: 'helper'
-    #     path: 'helper_mac'
-    #     filename: 'helper_mac.tar.gz'
-
     - name: Bump version and push tag
       if: ${{ github.ref == 'refs/heads/main' }}
       id: tag_version
