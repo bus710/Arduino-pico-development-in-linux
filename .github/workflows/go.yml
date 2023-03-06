@@ -34,12 +34,15 @@ jobs:
         echo 'Build for Mac'
         GOOS=darwin go build -v -o helper_mac ./...
 
+        ls
+        pwd
+
     - uses: actions/checkout@master
     - name: Archive Release for Linux
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        directory: './helper'
+        directory: 'helper'
         path: 'helper_linux'
         filename: 'helper_linux.tar.gz'
     - name: Archive Release for Win
