@@ -39,19 +39,19 @@ jobs:
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        path: 'helper'
+        path: 'helper/helper'
         filename: 'helper.tar.gz'
     - name: Archive Release for Win
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'zip'
-        path: 'helper.exe'
+        path: 'helper/helper.exe'
         filename: 'helper.zip'
     - name: Archive Release for Mac
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        path: 'helper_mac'
+        path: 'helper/helper_mac'
         filename: 'helper_mac.tar.gz'
 
     - name: Bump version and push tag
