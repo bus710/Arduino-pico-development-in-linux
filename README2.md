@@ -41,5 +41,19 @@ Also, those 3 lines should be added to avoid redlines (should be edited for the 
 
 ## Little better way
 
+The helper directory of this repo contains a small Go app, which reads the platform_inc.txt file and spits out the required JSON strings, so the output can be used for the includePath.
+
+The platform_inc.txt file should exist. Also Go SDK should exist. Then:
+```sh
+$ cd helper
+$ go run helper.go
+```
+
+The output should look like this:
+![output.png](assets/output.png)
+
+So it can be copied/pasted into the c_cpp_properties.json file.
+
+<br/>
 
 [Back to README.md](README.md#3-sketch-verification-and-c_cpp_propertiesjson)
