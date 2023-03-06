@@ -39,7 +39,8 @@ jobs:
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        path: 'helper/helper_linux'
+        directory: './helper'
+        path: 'helper_linux'
         filename: 'helper_linux.tar.gz'
     - name: Archive Release for Win
       uses: thedoctor0/zip-release@0.7.1
