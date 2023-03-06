@@ -68,7 +68,7 @@ jobs:
     - uses: ncipollo/release-action@v1.12.0
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
-        artifacts: "helper_linux.tar.gz,helper_win.zip,helper_mac.tar.gz"
+        artifacts: "helper/helper_linux.tar.gz,helper/helper_win.zip,helper/helper_mac.tar.gz"
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
