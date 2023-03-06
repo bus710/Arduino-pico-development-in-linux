@@ -26,10 +26,10 @@ jobs:
         cd helper 
 
         echo 'Build for Linux'
-        go build -v ./...
+        go build -v -o helper_linux ./...
 
         echo 'Build for Win'
-        GOOS=windows go build -v ./...
+        GOOS=windows go build -v -o helper_win.exe ./...
 
         echo 'Build for Mac'
         GOOS=darwin go build -v -o helper_mac ./...
@@ -39,19 +39,19 @@ jobs:
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        path: 'helper/helper'
-        filename: 'helper.tar.gz'
+        path: 'helper_linux'
+        filename: 'helper_linux.tar.gz'
     - name: Archive Release for Win
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'zip'
-        path: 'helper/helper.exe'
-        filename: 'helper.zip'
+        path: 'helper_win.exe'
+        filename: 'helper_win.zip'
     - name: Archive Release for Mac
       uses: thedoctor0/zip-release@0.7.1
       with:
         type: 'tar'
-        path: 'helper/helper_mac'
+        path: 'helper_mac'
         filename: 'helper_mac.tar.gz'
 
     - name: Bump version and push tag
