@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/user"
+	"runtime"
 	"strings"
 
 	"github.com/Masterminds/semver"
@@ -22,10 +23,19 @@ const (
 )
 
 func main() {
+	prefix := findOS()
 	homeDir := findHomeDir()
-	version := findVersion(homeDir)
-	headers := readHeaders(homeDir, version)
+	version := findVersion(prefix, homeDir)
+	headers := readHeaders(prefix, homeDir, version)
 	fmt.Println(headers)
+}
+
+func findOS() string {
+	if runtime.GOOS == "windows" {
+		return PREFIX_WIN
+	} else {
+		return PREFIX
+	}
 }
 
 func findHomeDir() string {
@@ -34,9 +44,9 @@ func findHomeDir() string {
 	return user.HomeDir
 }
 
-func findVersion(homeDir string) string {
+func findVersion(prefix, homeDir string) string {
 	// Read the prefix path
-	files, err := os.ReadDir(homeDir + "/" + PREFIX)
+	files, err := os.ReadDir(homeDir + "/" + prefix)
 	if err != nil {
 		log.Println(err)
 		os.Exit(-1)
@@ -55,18 +65,18 @@ func findVersion(homeDir string) string {
 
 	// Couldn't find a directory with semver format? exit.
 	if version == "" {
-		log.Println("cannot find a directory from" + homeDir + "/" + PREFIX)
+		log.Println("cannot find a directory from" + homeDir + "/" + prefix)
 		os.Exit(-1)
 	}
 
 	return version
 }
 
-func readHeaders(homeDir, version string) string {
+func readHeaders(prefix, homeDir, version string) string {
 	var ret string
 
 	// Open the given file
-	f, _ := os.Open(homeDir + "/" + PREFIX + "/" + version + "/" + FILENAME)
+	f, _ := os.Open(homeDir + "/" + prefix + "/" + version + "/" + FILENAME)
 	// Iterate over the file contents
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -74,7 +84,7 @@ func readHeaders(homeDir, version string) string {
 		lineSplit := strings.Split(line, "/")
 		// TODO: maybe 2 back slashes for Windows?
 		line = strings.Join(lineSplit[1:], "/")
-		line = "\"" + homeDir + "/" + PREFIX + "/" + version + "/" + line + "\",\n"
+		line = "\"" + homeDir + "/" + prefix + "/" + version + "/" + line + "\",\n"
 		ret += line
 	}
 
@@ -85,7 +95,7 @@ func readHeaders(homeDir, version string) string {
 		ADDITIONAL_HEADER_2,
 	}
 	for _, h := range additionalHeaders {
-		ret += "\"" + homeDir + "/" + PREFIX + "/" + version + "/" + h + "\",\n"
+		ret += "\"" + homeDir + "/" + prefix + "/" + version + "/" + h + "\",\n"
 	}
 	return ret
 }
