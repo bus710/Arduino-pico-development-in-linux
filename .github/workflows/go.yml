@@ -37,7 +37,6 @@ jobs:
         ls
         pwd
 
-    - uses: actions/checkout@master
     - name: Archive Release for Linux
       uses: thedoctor0/zip-release@0.7.1
       with:
