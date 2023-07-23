@@ -95,7 +95,10 @@
                 "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/libraries/BTstackLib/src",
                 "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/libraries/SPI/src",
                 "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/libraries/HID_Mouse/src",
-                "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/libraries/Mouse/src"
+                "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/libraries/Mouse/src",
+                "${env:HOME}/Arduino/libraries/NeoPixelBus_by_Makuna/src",
+                "${env:HOME}/Arduino/libraries/NeoPixelConnect/src",
+                "${env:HOME}/Arduino/libraries/Adafruit_NeoPixel"
             ],
             "forcedInclude": [
                 "${env:HOME}/.arduino15/packages/rp2040/hardware/rp2040/3.3.0/cores/rp2040/Arduino.h"
