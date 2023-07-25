@@ -24,13 +24,13 @@ void setup()
 
 void loop()
 {
-    // Blink the built-in LED once every 2 seconds.
+    // Blink the built-in LED once every 10 seconds.
     // blink = !blink;
     // digitalWrite(LED_BUILTIN, blink);
 
     // pixels.clear();
-    delay(900);
-    pixels.setPixelColor(0, pixels.Color(0, 8, 0));
+    delay(9900); // 9.9 sec
+    pixels.setPixelColor(0, pixels.Color(0, 4, 0));
     pixels.show();
 
     delay(100);
@@ -38,9 +38,9 @@ void loop()
     pixels.show();
 
 
-    // Move cursor once every 240 seconds (4 mins)
+    // Move cursor once every 240 seconds (about 4 mins)
     cnt += 1;
-    if (cnt > 240)
+    if (cnt > 24)
     {
         cnt = 0;
         Mouse.move(1, 2, 0);
